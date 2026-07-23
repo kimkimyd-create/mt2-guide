@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monster Train 2 — The Clean Beginner's Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14110F; --panel:#1E1A16; --panel-2:#262019; --line:#3A3128;
+    --ember:#E0601C; --ember-dim:#7A3512; --brass:#C89B3C;
+    --text:#EDE6DB; --muted:#9C948A;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Source Serif 4', serif; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ember);}
+  .nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(20,17,15,0.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+  }
+  .nav-title{
+    font-family:'Oswald', sans-serif; font-weight:700; letter-spacing:0.03em;
+    text-transform:uppercase; font-size:15px;
+  }
+  .nav-title span{color:var(--ember);}
+  .nav-links{display:flex; gap:22px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.04em;}
+  .nav-links a{color:var(--muted); text-decoration:none;}
+  .nav-links a:hover{color:var(--ember);}
+
+  .hero{
+    padding:90px 28px 70px;
+    background: radial-gradient(ellipse at 20% 0%, rgba(224,96,28,0.10), transparent 50%);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-inner{max-width:760px; margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--ember); margin-bottom:16px;
+  }
+  h1{
+    font-family:'Oswald', sans-serif; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.01em; font-size:clamp(34px,6vw,56px); line-height:1.03; margin:0 0 18px;
+  }
+  .hero p{font-size:18px; line-height:1.65; color:var(--muted); max-width:56ch;}
+
+  main{max-width:760px; margin:0 auto; padding:64px 28px 100px;}
+  section{margin-bottom:64px; scroll-margin-top:80px;}
+  h2{
+    font-family:'Oswald', sans-serif; font-weight:600; text-transform:uppercase;
+    letter-spacing:0.02em; font-size:26px; color:var(--brass);
+    border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:24px;
+  }
+  h3{font-family:'Oswald', sans-serif; font-weight:500; font-size:18px; margin:28px 0 10px; color:var(--text);}
+  p{line-height:1.7; font-size:16px; color:var(--text);}
+  ul{padding-left:22px; line-height:1.8;}
+  li{margin-bottom:6px;}
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:2px;
+    padding:22px 24px; margin:18px 0;
+  }
+  .qa{border-bottom:1px solid var(--line); padding:20px 0;}
+  .qa:last-child{border-bottom:none;}
+  .qa .q{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.03em;
+    color:var(--ember); text-transform:uppercase; margin-bottom:8px;
+  }
+  .answer{
+    border-left:3px solid var(--ember); background:rgba(224,96,28,0.08);
+    padding:14px 18px; margin:14px 0 20px; border-radius:0 2px 2px 0;
+    font-size:16px; line-height:1.6;
+  }
+  .answer b{color:var(--brass);}
+  .updated{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted);
+    margin-top:14px;
+  }
+  .feedback{
+    margin-top:70px; padding:28px 26px; border:1px solid var(--ember-dim);
+    background:rgba(224,96,28,0.06); border-radius:2px; text-align:center;
+  }
+  .feedback h3{margin-top:0; color:var(--brass);}
+  .feedback p{color:var(--muted); font-size:15px; margin-bottom:16px;}
+  .feedback a.btn{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:13px;
+    letter-spacing:0.04em; text-transform:uppercase; color:var(--bg);
+    background:var(--ember); padding:11px 22px; border-radius:2px; text-decoration:none;
+  }
+  footer{
+    border-top:1px solid var(--line); padding:32px 28px;
+    text-align:center; font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-title">MT2<span>.</span>GUIDE</div>
+  <div class="nav-links">
+    <a href="#basics">Basics</a>
+    <a href="#clans">Clans</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Community Guide — Not Official</div>
+    <h1>Monster Train 2,<br>Without the Digging</h1>
+    <p>One clean place to learn the game — no forum-hopping, no five open tabs. Core mechanics, your first winning run, and answers to the questions everyone asks early.</p>
+    <div class="updated">Last checked against current patch: July 2026 · Something changed? <a href="#feedback">Tell me below</a></div>
+  </div>
+</div>
+
+<main>
+
+  <section id="basics">
+    <h2>Beginner's Guide</h2>
+
+    <h3>The Basics</h3>
+    <p>Each run, you pick two clans: a <b>Primary clan</b> (gives you your Champion and most of your core cards) and a <b>Secondary clan</b> (adds support cards and extra synergy options).</p>
+    <p>At the top of your train sits the <b>Pyre</b> — your core objective. If it's destroyed, the run ends. Certain unlockable Pyres grant passive bonuses that change how a run plays out.</p>
+
+    <h3>Covenant 0 vs Covenant 1 — which should I play?</h3>
+    <div class="answer"><b>Short answer:</b> start on Covenant 0, but move to Covenant 1 quickly — it seeds your deck with extra cards and a free unit, which makes runs more varied and actually easier to learn from, not harder.</div>
+    <div class="card">
+      <ul>
+        <li><b>Covenant 0</b> — the gentlest starting point, good for your very first runs.</li>
+        <li><b>Covenant 1</b> — slightly tougher enemies, but the added cards make it worth it once you've won a run or two.</li>
+        <li>Only raise the Covenant level once you're consistently finishing runs at your current one — there's no rush.</li>
+      </ul>
+    </div>
+
+    <h3>Losing floor 1 by turn 3? Fix your positioning first</h3>
+    <div class="answer">If your run keeps collapsing early, it's almost always <b>a positioning problem before it's a card problem.</b> Check this first, before you touch your deck.</div>
+    <p>Combat happens across multiple floors of your train, and where you place units matters:</p>
+    <ul>
+      <li>Put your tankiest unit (highest HP/armor) in the <b>front</b> of each floor — it absorbs incoming attacks.</li>
+      <li>Put fragile, high-damage units <b>behind</b> them.</li>
+      <li>Your Champion is strongest held in reserve on a back floor, building up power before committing.</li>
+    </ul>
+
+    <h3>Why do my runs fall apart mid-game?</h3>
+    <div class="answer">Usually one of these four. Check the list below before assuming your deck is just unlucky.</div>
+    <ul>
+      <li>Overfilling every floor with units just because you can.</li>
+      <li>Ignoring upcoming enemy previews/abilities before a fight.</li>
+      <li>Keeping every starter card "just in case" instead of trimming your deck.</li>
+      <li>Treating optional trial challenges as mandatory — skipping a risky one is often correct early on.</li>
+    </ul>
+  </section>
+
+  <section id="clans">
+    <h2>Best Starting Clan</h2>
+
+    <div class="answer"><b>Short answer:</b> pick The Banished. It's the most forgiving clan to learn the game's core mechanics on.</div>
+
+    <h3>Why The Banished works for new players</h3>
+    <p>Their playstyle centers on <b>movement</b> — many of their units use a "Shift" mechanic that triggers a bonus effect whenever a unit moves position, plus a "Valor" stacking buff that boosts attack and armor over time.</p>
+    <p>Their Champion can become a genuine run-ender once buffed — held in reserve on a back floor stacking Valor, then unleashed as a multi-hit finisher capable of clearing an entire wave in one go.</p>
+
+    <h3>Good Secondary Pairings</h3>
+    <ul>
+      <li>A clan with strong frontline tank units pairs naturally with Banished's more mobile playstyle.</li>
+      <li>A spell-focused clan is a solid alternate pairing if your primary clan already has enough dedicated fighters.</li>
+    </ul>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+
+    <div class="qa">
+      <div class="q">Which Covenant level should I start on?</div>
+      <p>Start at Covenant 0 or 1. Stay there until you're winning consistently before raising the difficulty.</p>
+    </div>
+    <div class="qa">
+      <div class="q">What happens if my Pyre is destroyed?</div>
+      <p>The run ends immediately. Protecting it is the actual win condition, not just surviving each individual fight.</p>
+    </div>
+    <div class="qa">
+      <div class="q">How does card rarity work?</div>
+      <p>Common cards form the foundation of your strategy and usually reflect a clan's core keywords. Higher rarities build on that foundation rather than replacing it.</p>
+    </div>
+    <div class="qa">
+      <div class="q">I keep losing — what's the most common mistake?</div>
+      <p>Spreading your deck too thin across too many mechanics instead of committing to one clear strategy early.</p>
+    </div>
+  </section>
+
+  <div class="feedback" id="feedback">
+    <h3>What's missing?</h3>
+    <p>This guide gets better from real questions, not guesses. If something you searched for isn't answered above, say so — it gets added.</p>
+    <a class="btn" href="https://www.reddit.com/r/MonsterTrain/" target="_blank" rel="noopener">Post your question →</a>
+  </div>
+
+</main>
+
+<footer>
+  A community resource for new players. Not affiliated with the developers.
+</footer>
+
+</body>
+</html>
